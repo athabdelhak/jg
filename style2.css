@@ -1,0 +1,588 @@
+:root {
+    --bg-page: #121212;
+    --bg-panel: #1e1e1e;
+    --bg-surface: #2d2d2d;
+    --accent-primary: #bb86fc;
+    --accent-secondary: #03dac6;
+    --text-main: #ffffff;
+    --text-muted: #b3b3b3;
+    --text-soft: #e0e0e0;
+    --border: rgba(255,255,255,0.12);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, rgba(187,134,252,0.14), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(3,218,198,0.14), transparent 24%),
+                var(--bg-page);
+    color: var(--text-main);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(7,16,31,0.90);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 0;
+}
+
+.brand {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.nav-links a,
+.nav-action {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover,
+.nav-action:hover {
+    color: var(--text-main);
+}
+
+.nav-action {
+    padding: 12px 22px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.nav-action:hover {
+    background: rgba(187,134,252,0.14);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    padding: 90px 0 60px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent-secondary);
+    font-size: 0.82rem;
+    margin-bottom: 18px;
+}
+
+.hero-copy h1 {
+    font-size: clamp(3rem, 2.9vw, 4.5rem);
+    line-height: 0.98;
+    margin: 0;
+    max-width: 680px;
+}
+
+.hero-text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 24px 0 32px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.button-primary {
+    background: linear-gradient(135deg, var(--accent-primary), #9c4dcc);
+    color: #121212;
+}
+
+.button-secondary {
+    border: 1px solid rgba(255,255,255,0.16);
+    color: var(--text-main);
+    background: rgba(255,255,255,0.04);
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.preview-card {
+    width: min(100%, 420px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(45,45,45,0.96), rgba(30,30,30,0.95));
+    box-shadow: 0 10px 30px rgba(187, 134, 252, 0.1), var(--shadow);
+    padding: 26px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 20px;
+}
+
+.status-pill {
+    background: rgba(3,218,198,0.14);
+    color: var(--accent-secondary);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.preview-screen {
+    min-height: 420px;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: block; 
+    background: #1e1e1e;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* =========================================
+   SPLINE WATERMARK REMOVER HACK
+   (Still used in the Hero Section)
+   ========================================= */
+.spline-hide-watermark {
+    width: 100%;
+    height: 100%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.spline-hide-watermark spline-viewer {
+    width: 100%;
+    height: calc(100% + 80px); /* Pushes watermark down */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/* --- COMMON SECTION STYLES --- */
+.importance-banner,
+.bento-section,
+.benefits-section,
+.download-section,
+.contact-section,
+.site-footer {
+    padding: 72px 0;
+}
+
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.banner-grid h2,
+.section-heading h2 {
+    font-size: clamp(2rem, 2.5vw, 2.8rem);
+    margin: 0 0 18px;
+}
+
+.banner-grid p,
+.section-heading p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* --- IMPORTANCE BANNER --- */
+.importance-banner {
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.banner-stats {
+    display: grid;
+    gap: 18px;
+}
+
+.banner-stats div {
+    padding: 28px 32px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.banner-stats strong {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+/* --- BENTO BOX FEATURES GRID --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.bento-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+.bento-card.large {
+    grid-column: span 2;
+}
+
+.bento-content {
+    padding: 32px 32px 0;
+}
+
+.bento-content h3 {
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+    color: var(--text-main);
+}
+
+.bento-content p {
+    margin: 0 0 24px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* IMAGE CONTAINER STYLES */
+.bento-visual {
+    flex-grow: 1;
+    min-height: 180px;
+    margin: 0 32px 32px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+    background: rgba(0,0,0,0.2); /* Fallback background */
+}
+
+.bento-card.large .bento-visual {
+    min-height: 240px;
+}
+
+/* Ensures images fill their boxes beautifully */
+.bento-visual img, 
+.download-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+}
+
+/* --- BENEFITS SECTION --- */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 32px;
+    min-height: 230px;
+}
+
+.benefit-card h3 {
+    margin-top: 0;
+    color: var(--text-main);
+}
+
+.benefit-card p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 18px 0 0;
+}
+
+/* --- DOWNLOAD SECTION --- */
+.download-card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
+    align-items: center;
+    padding: 42px;
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: var(--shadow);
+}
+
+.download-copy .download-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 32px;
+    display: grid;
+    gap: 14px;
+}
+
+.download-list li {
+    position: relative;
+    padding-left: 28px;
+    color: var(--text-muted);
+}
+
+.download-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.download-image-placeholder {
+    min-height: 320px;
+    border-radius: 28px;
+    display: block; 
+    border: none;
+    padding: 0; 
+    overflow: hidden;
+    position: relative;
+    background: rgba(0,0,0,0.2);
+}
+
+/* --- CONTACT SECTION --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.1fr;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.contact-card,
+.contact-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 32px;
+}
+
+.contact-card h3 {
+    margin-top: 0;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.contact-card a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-form label {
+    display: block;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-main);
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.contact-form textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.contact-form button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 32px 0 48px;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- SCROLL REVEAL ANIMATION --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE QUERIES --- */
+@media (max-width: 960px) {
+    .container {
+        width: min(100%, calc(100% - 28px));
+    }
+
+    .hero-grid,
+    .banner-grid,
+    .bento-grid,
+    .download-card,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card.large {
+        grid-column: span 1;
+    }
+
+    .hero-section {
+        padding-top: 64px;
+    }
+}
+
+@media (max-width: 680px) {
+    .navbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .hero-copy h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .banner-stats div,
+    .benefit-card,
+    .download-card,
+    .contact-card,
+    .contact-form,
+    .bento-content {
+        padding: 24px;
+    }
+
+    .bento-visual {
+        margin: 0 24px 24px;
+    }
+}
